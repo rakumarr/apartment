@@ -41,7 +41,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"search-component\">\n  <!-- <h4>Apartment Search</h4>\n\n  <input #searchBox id=\"search-box\"  />\n  <ul>\n      <li *ngFor=\"let apartment of apartments\"></li>\n  </ul> -->\n  \n  <form class=\"form-inline  justify-content-center\" action=\"/action_page.php\" >\n    <div class=\"dropdown\">\n        <button type=\"button\" class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\">\n          Select Apartment\n        </button>\n        <div class=\"dropdown-menu\">\n          <a class=\"dropdown-item\" href=\"#\" *ngFor=\"let apartment of apartments\" (change)=\"callType(t.value)\">{{apartment}}</a>\n          \n        </div>\n      </div>\n      <div class=\"g-signin2\" data-onsuccess=\"onSignIn\"></div>      \n  </form>\n  <a href=\"#\" onclick=\"signOut();\">Sign out</a>\n<script>\n  function  onSignIn(googleUser) {\n    var profile = googleUser.getBasicProfile();\n    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.\n    console.log('Name: ' + profile.getName());\n    console.log('Image URL: ' + profile.getImageUrl());\n    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.\n  }\n  function signOut() {\n    var auth2 = gapi.auth2.getAuthInstance();\n    auth2.signOut().then(function () {\n      console.log('User signed out.');\n    });\n  }\n</script>\n</div>\n"
+module.exports = "<div id=\"search-component\">\n  <!-- <h4>Apartment Search</h4>\n\n  <input #searchBox id=\"search-box\"  />\n  <ul>\n      <li *ngFor=\"let apartment of apartments\"></li>\n  </ul> -->\n  \n  <form class=\"form-inline  justify-content-center\" action=\"/action_page.php\" >\n    <div class=\"dropdown\">\n        <button type=\"button\" class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\">\n          Select Apartment\n        </button>\n        <div class=\"dropdown-menu\">\n          <a class=\"dropdown-item\" href=\"#\" *ngFor=\"let apartment of apartments\" (change)=\"callType(t.value)\">{{apartment}}</a>\n          \n        </div>\n      </div>\n      <google-signin></google-signin>\n      <div class=\"g-signin2\" data-onsuccess=\"onSignIn\"  data-theme=\"dark\"></div>  \n      <script>\n          function onSignIn(googleUser) {\n            // Useful data for your client-side scripts:\n            var profile = googleUser.getBasicProfile();\n            console.log(\"ID: \" + profile.getId()); // Don't send this directly to your server!\n            console.log('Full Name: ' + profile.getName());\n            console.log('Given Name: ' + profile.getGivenName());\n            console.log('Family Name: ' + profile.getFamilyName());\n            console.log(\"Image URL: \" + profile.getImageUrl());\n            console.log(\"Email: \" + profile.getEmail());\n    \n            // The ID token you need to pass to your backend:\n            var id_token = googleUser.getAuthResponse().id_token;\n            console.log(\"ID Token: \" + id_token);\n          }\n        </script>    \n  </form>\n  <a href=\"#\" onclick=\"signOut();\">Sign out</a>\n<script>  \n  function signOut() {\n    var auth2 = gapi.auth2.getAuthInstance();\n    auth2.signOut().then(function () {\n      console.log('User signed out.');\n    });\n  }\n</script>\n</div>\n"
 
 /***/ }),
 
@@ -269,6 +269,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tenant_component_tenant_component_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./tenant-component/tenant-component.component */ "./src/app/tenant-component/tenant-component.component.ts");
 /* harmony import */ var ag_grid_angular__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ag-grid-angular */ "./node_modules/ag-grid-angular/main.js");
 /* harmony import */ var ag_grid_angular__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(ag_grid_angular__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _google_signin_component_google_signin_component_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./google-signin-component/google-signin-component.component */ "./src/app/google-signin-component/google-signin-component.component.ts");
+
 
 
 
@@ -294,7 +296,8 @@ var AppModule = /** @class */ (function () {
                 _residents_component_residents_component_component__WEBPACK_IMPORTED_MODULE_8__["ResidentsComponentComponent"],
                 _report_component_report_component_component__WEBPACK_IMPORTED_MODULE_10__["ReportComponentComponent"],
                 _owner_component_owner_component_component__WEBPACK_IMPORTED_MODULE_11__["OwnerComponentComponent"],
-                _tenant_component_tenant_component_component__WEBPACK_IMPORTED_MODULE_12__["TenantComponentComponent"]
+                _tenant_component_tenant_component_component__WEBPACK_IMPORTED_MODULE_12__["TenantComponentComponent"],
+                _google_signin_component_google_signin_component_component__WEBPACK_IMPORTED_MODULE_14__["GoogleSigninComponentComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -308,6 +311,87 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/google-signin-component/google-signin-component.component.css":
+/*!*******************************************************************************!*\
+  !*** ./src/app/google-signin-component/google-signin-component.component.css ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2dvb2dsZS1zaWduaW4tY29tcG9uZW50L2dvb2dsZS1zaWduaW4tY29tcG9uZW50LmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/google-signin-component/google-signin-component.component.ts":
+/*!******************************************************************************!*\
+  !*** ./src/app/google-signin-component/google-signin-component.component.ts ***!
+  \******************************************************************************/
+/*! exports provided: GoogleSigninComponentComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GoogleSigninComponentComponent", function() { return GoogleSigninComponentComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var GoogleSigninComponentComponent = /** @class */ (function () {
+    function GoogleSigninComponentComponent(element) {
+        this.element = element;
+        this.clientId = '1009671136892-50ko56l38kkkcdmmj9cd7n0pbeu4poe3.apps.googleusercontent.com';
+        this.scope = [
+            'profile',
+            'email',
+            'https://www.googleapis.com/auth/plus.me',
+            'https://www.googleapis.com/auth/contacts.readonly',
+            'https://www.googleapis.com/auth/admin.directory.user.readonly'
+        ].join(' ');
+        console.log('ElementRef: ', this.element);
+    }
+    GoogleSigninComponentComponent.prototype.googleInit = function () {
+        var that = this;
+        gapi.load('auth2', function () {
+            that.auth2 = gapi.auth2.init({
+                client_id: that.clientId,
+                cookiepolicy: 'single_host_origin',
+                scope: that.scope
+            });
+            that.attachSignin(that.element.nativeElement.firstChild);
+        });
+    };
+    GoogleSigninComponentComponent.prototype.attachSignin = function (element) {
+        var that = this;
+        this.auth2.attachClickHandler(element, {}, function (googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('Token || ' + googleUser.getAuthResponse().id_token);
+            console.log('ID: ' + profile.getId());
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail());
+            //YOUR CODE HERE
+        }, function (error) {
+            console.log(JSON.stringify(error, undefined, 2));
+        });
+    };
+    GoogleSigninComponentComponent.prototype.ngAfterViewInit = function () {
+        this.googleInit();
+    };
+    GoogleSigninComponentComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'google-signin',
+            template: '<button id="googleBtn">Google Sign-In</button>',
+            styles: [__webpack_require__(/*! ./google-signin-component.component.css */ "./src/app/google-signin-component/google-signin-component.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]])
+    ], GoogleSigninComponentComponent);
+    return GoogleSigninComponentComponent;
 }());
 
 
