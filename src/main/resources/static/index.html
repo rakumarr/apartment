@@ -20,6 +20,8 @@
     <div class="container-fluid" style="text-align:center">               
         <app-root></app-root>
     </div>
+    <a href="#" onClick="signOut();">Sign out</a>
+    
     <script>
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
@@ -35,8 +37,7 @@
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
       }
-    </script> 
-    <script>  
+      
       function signOut() {
         console.log("sign out");
         var auth2 = gapi.auth2.getAuthInstance();
@@ -44,6 +45,7 @@
           console.log('User signed out.');
         });
       }
+     
     </script>
 <script type="text/javascript" src="runtime.js"></script><script type="text/javascript" src="es2015-polyfills.js" nomodule></script><script type="text/javascript" src="polyfills.js"></script><script type="text/javascript" src="styles.js"></script><script type="text/javascript" src="vendor.js"></script><script type="text/javascript" src="main.js"></script></body>
 </html>
