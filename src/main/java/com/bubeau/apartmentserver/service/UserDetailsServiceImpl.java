@@ -2,7 +2,7 @@ package com.bubeau.apartmentserver.service;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.util.Collections;
+import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,16 +34,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private static final JacksonFactory jsonFactory = new JacksonFactory();
 
 	@Override
-	public void getUser(String token) throws GeneralSecurityException, IOException {
+	public Payload getUser(String token) throws GeneralSecurityException, IOException {
 		
 		HttpTransport transport = new NetHttpTransport();
 
 		GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
-		    // Specify the CLIENT_ID of the app that accesses the backend:
-		    .setAudience(Collections.singletonList("1009671136892-50ko56l38kkkcdmmj9cd7n0pbeu4poe3.apps.googleusercontent.com"))
-		    // Or, if multiple clients access the backend:
-		    //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
-		    .build();
+				// Specify the CLIENT_ID of the app that accesses the backend:
+				.setAudience(Arrays.asList("856961756221-boomi3g5j1hr1mpv8dbvdgksdogrcpt2.apps.googleusercontent.com",
+						"1009671136892-gp9h74b13e92bg812ugfu33m5ghmos7a.apps.googleusercontent.com"))
+				// Or, if multiple clients access the backend:
+				// .setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
+				.build();
 
 		// (Receive idTokenString by HTTPS POST)
 
@@ -64,13 +65,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		  String familyName = (String) payload.get("family_name");
 		  String givenName = (String) payload.get("given_name");
 		  System.out.println(payload.toPrettyString());
-		  // Use or store profile information
-		  // ...
-
-		} else {
-		  System.out.println("Invalid ID token.");
-		}
-		
+		  return payload;
+		} 
+		return null;		
 	}
 
 }
