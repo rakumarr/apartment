@@ -15,13 +15,14 @@ public class ApartmentServerApplication {
 	}
 	
 	@Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("https://www.bubeau.com");
-            }
-        };
-    }
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**").allowedOrigins("https://www.bubeau.com",
+						"https://angular-yd8upv.stackblitz.io");
+			}
+		};
+	}
 
 }
