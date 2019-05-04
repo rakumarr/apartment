@@ -27,6 +27,7 @@ public class ResidentServiceImpl implements ResidentService {
 			// dto.setContact();
 			dto.setFlat(t.getFlat());
 			dto.setName(t.getName());
+			dto.setContact(t.getContact());
 			dto.setOwner(true);
 			return dto;
 		}
