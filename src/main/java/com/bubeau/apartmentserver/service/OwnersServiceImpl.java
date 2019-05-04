@@ -61,7 +61,7 @@ public class OwnersServiceImpl implements OwnerService {
 
 	@Override
 	public List<Owners> viewOwners(ObjectId id) {
-		return repository.findAll().stream().filter(apt -> apt.get_id().toString().equals(id.toString()))
+		return repository.findAll().stream().filter(apt -> apt.getApartmentId().equals(id.toString()))
 				.collect(Collectors.toList());
 	}
 
