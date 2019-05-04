@@ -10,6 +10,7 @@ public class Owners {
 	private ObjectId apartmentId;
 	private String flat;
 	private String name;
+	private String contact;
 	private boolean resident;
 		
 	public Owners() {
@@ -62,6 +63,14 @@ public class Owners {
 
 	public void setResident(boolean resident) {
 		this.resident = resident;
+	}
+
+	public String getContact() {
+		return contact;
+	}
+
+	public void setContact(String contact) {
+		this.contact = contact;
 	}
 	
 }
