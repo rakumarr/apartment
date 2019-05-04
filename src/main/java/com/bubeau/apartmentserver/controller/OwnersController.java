@@ -14,19 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bubeau.apartmentserver.dto.OwnersDTO;
 import com.bubeau.apartmentserver.models.Owners;
-import com.bubeau.apartmentserver.repository.OwnersRepository;
 import com.bubeau.apartmentserver.service.OwnerService;
 
 @RestController
 @RequestMapping("/api/owners")
 public class OwnersController {
 	
-	@Autowired private OwnersRepository repository;
 	@Autowired private OwnerService ownersService;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public List<Owners> getAllPets() {
-	  return repository.findAll();
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public List<Owners> getAllOwnersById(@PathVariable ObjectId id) {
+	  return ownersService.viewOwners(id);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)

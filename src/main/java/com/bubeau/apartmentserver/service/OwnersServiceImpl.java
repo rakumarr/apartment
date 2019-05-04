@@ -1,6 +1,8 @@
 package com.bubeau.apartmentserver.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +57,12 @@ public class OwnersServiceImpl implements OwnerService {
 		} else {
 			throw new RuntimeException("Apartment not allowed");
 		}
+	}
+
+	@Override
+	public List<Owners> viewOwners(ObjectId id) {
+		return repository.findAll().stream().filter(apt -> apt.get_id().toString().equals(id.toString()))
+				.collect(Collectors.toList());
 	}
 
 }
