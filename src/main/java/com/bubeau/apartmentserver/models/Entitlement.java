@@ -1,6 +1,7 @@
 package com.bubeau.apartmentserver.models;
 
 import java.util.List;
+import java.util.Map;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -14,6 +15,8 @@ public class Entitlement {
 	private ObjectId apartmentId;
 	private List<Authorization> authorization;
 	private List<String> users;
+	private Map<String,List<String>> specialActions;
+	
 	public ObjectId get_id() {
 		return _id;
 	}
@@ -38,5 +41,11 @@ public class Entitlement {
 	public void setUsers(List<String> users) {
 		this.users = users;
 	}
-		
+	public Map<String,List<String>> getSpecialActions() {
+		return specialActions;
+	}
+	public void setSpecialActions(Map<String,List<String>> specialActions) {
+		this.specialActions = specialActions;
+	}
+			
 }
