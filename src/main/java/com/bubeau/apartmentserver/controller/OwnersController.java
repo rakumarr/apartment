@@ -8,17 +8,14 @@ import javax.validation.Valid;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bubeau.apartmentserver.dto.OwnersDTO;
 import com.bubeau.apartmentserver.models.Owners;
 import com.bubeau.apartmentserver.service.OwnerService;
-
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 
 @RestController
