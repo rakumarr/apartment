@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.bubeau.apartmentserver.service.UserDetailsService;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
@@ -40,7 +41,7 @@ public class ApartmentServerApplication {
 			}
 		};
 	}
-	
+
 	@Bean
 	public OncePerRequestFilter  authentication() {
 		return new OncePerRequestFilter () {
@@ -49,6 +50,9 @@ public class ApartmentServerApplication {
 			protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
 					FilterChain filterChain) throws ServletException, IOException {
 				System.out.println("asdf");
+				if(request.getMethod().equals("OPTIONS")) {
+					return;
+				}
 				try {
 					Payload payload = userDetailsService.getUser(request.getHeader("X-AuthToken"));
 					if(payload != null) {
@@ -59,7 +63,7 @@ public class ApartmentServerApplication {
 					}					
 				} catch (GeneralSecurityException e) {
 					throw new IOException(e.getCause());
-				}
+				}				
 				filterChain.doFilter(request, response);
 			}
 			
