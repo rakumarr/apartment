@@ -48,6 +48,7 @@ public class EntitlementServiceImpl implements EntitlementService {
 			if (auth.isPresent()) {
 				Authorization authorization = auth.get();
 				Set<String> specialActions = ent.getSpecialActions().keySet();
+				//Set allowed actions
 				authorization.setAllowedActions(authorization.getAllowedActions().stream().filter(
 						action -> !specialActions.contains(action) || ent.getSpecialActions().containsKey(user))
 						.collect(Collectors.toList()));
