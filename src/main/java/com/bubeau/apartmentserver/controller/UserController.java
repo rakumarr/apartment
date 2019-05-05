@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,17 +22,11 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 public class UserController {
 	
 	@Autowired
-	private UserDetailsService userDetailsService;
-	
-	@Autowired
 	private EntitlementService entitlementService;
 	
-	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public List<UserDTO> getUserEntitlement(@RequestBody String token) throws GeneralSecurityException, IOException {
-		Payload payload = userDetailsService.getUser(token);
-		if(payload != null) {
-			payload.getEmail();
-		}
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public List<UserDTO> getUserEntitlement(HttpServletRequest request) throws GeneralSecurityException, IOException {
+		Payload payload = (Payload) request.getAttribute("user");		
 		return entitlementService.getUserEntitlement(payload.getEmail());
 	}
 
