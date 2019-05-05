@@ -13,4 +13,6 @@ public interface OwnerService {
 	
 	List<Owners> viewOwners(ObjectId id);
 
+	List<Owners> getAssests(ObjectId id, String token);
+
 }

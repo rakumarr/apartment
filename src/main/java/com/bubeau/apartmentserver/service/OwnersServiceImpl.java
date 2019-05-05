@@ -65,4 +65,10 @@ public class OwnersServiceImpl implements OwnerService {
 				.collect(Collectors.toList());
 	}
 
+	@Override
+	public List<Owners> getAssests(ObjectId id, String email) {
+		return repository.findAll().stream().filter(apt -> apt.getApartmentId().equals(id.toString()))
+				.filter(apt -> apt.getUserIds()!=null && apt.getUserIds().contains(email)).collect(Collectors.toList());
+	}
+
 }

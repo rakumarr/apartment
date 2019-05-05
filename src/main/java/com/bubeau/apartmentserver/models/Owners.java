@@ -1,5 +1,7 @@
 package com.bubeau.apartmentserver.models;
 
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
@@ -11,6 +13,7 @@ public class Owners {
 	private String flat;
 	private String name;
 	private String contact;
+	private List<String> userIds;
 	private boolean resident;
 		
 	public Owners() {
@@ -72,5 +75,13 @@ public class Owners {
 	public void setContact(String contact) {
 		this.contact = contact;
 	}
-	
+
+	public List<String> getUserIds() {
+		return userIds;
+	}
+
+	public void setUserIds(List<String> userIds) {
+		this.userIds = userIds;
+	}
+
 }

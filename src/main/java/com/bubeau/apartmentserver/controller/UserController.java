@@ -27,7 +27,6 @@ public class UserController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public List<UserDTO> getUserEntitlement(@RequestBody String token) throws GeneralSecurityException, IOException {
-		System.out.println(token);
 		Payload payload = userDetailsService.getUser(token);
 		if(payload != null) {
 			payload.getEmail();
