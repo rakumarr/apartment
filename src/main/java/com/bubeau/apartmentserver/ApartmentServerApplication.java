@@ -16,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.bubeau.apartmentserver.service.UserDetailsService;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
@@ -51,6 +50,7 @@ public class ApartmentServerApplication {
 					FilterChain filterChain) throws ServletException, IOException {
 				System.out.println("asdf");
 				if(request.getMethod().equals("OPTIONS")) {
+					filterChain.doFilter(request, response);
 					return;
 				}
 				try {
